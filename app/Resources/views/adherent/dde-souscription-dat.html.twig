@@ -1,0 +1,183 @@
+{% extends 'layouts/layout-adherent.html.twig' %}{%block title%}Espace adhérent{%endblock%} {% block body %}
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#">Espace adhérent</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Opérations</span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Demande souscription au dépôt à terme</span>
+        </li>
+    </ul>
+    <div class="page-breadcrumb pull-right">
+        <div class="badge badge-orange">
+            Espace sécurisé <i class="fa fa-lock"></i>
+        </div>
+    </div>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h1 class="page-title">Demande de souscription au dépôt à terme</h1>
+<!-- END PAGE TITLE-->
+<!-- END PAGE HEADER-->
+
+<div class="row">
+
+    {% for message in app.session.flashbag.get('success') %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="alert alert-block alert-success fade in">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <p>
+                    <stronng>{{message}}</stronng>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %} {% for message in app.session.flashbag.get('error') %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="alert alert-block alert-danger fade in">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <p>
+                    <stronng>{{message}}</stronng>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-green-sharp">
+                <i class="fa fa-pencil-square-o font-green-sharp"></i>
+                <span class="caption-subject bold uppercase"> Formulaire de demande de souscription au dépôt à terme</span>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <form class="form-horizontal formSubmit" role="form" action="{{path('save_souscription_dat')}}" method="post" id="form">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Caractéristiques DAT</label>
+                        <div class="col-md-5">
+                            <select class="form-control" name="caracteristiques_dat" id="caracteristiques_dat">
+                                <option value="DAT 6 à 12 mois">DAT 6 à 12 mois</option>
+                                <option value="DAT 12 à 24 mois">DAT 12 à 24 mois</option>
+                                <option value="Plus de 24 mois">Plus de 24 mois</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Montant déposé <small>(minimum 100 000 F)</small></label>
+                        <div class="col-md-5">
+                            <input type="text" class="form-control separate" placeholder="Montant déposé " name="montant_depose" id="montant_depose" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Durée du DAT en mois</label>
+                        <div class="col-md-5">
+                            <input type="number" class="form-control" placeholder="Durée en mois" name="duree_mois" id="duree_mois" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Action à terme du dépôt</label>
+                        <div class="col-md-5">
+                            <select class="form-control" name="action_terme" required>
+                                <option>Renouvellement avec capitalisation</option>
+                                <option>Renouvellement par tacite recondition</option>
+                                <option>Clôture</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Date de la demande</label>
+                        <div class="col-md-5">
+                            <input disabled type="text" class="form-control" placeholder="Date de souscription" value='{{ "now"|date("d/m/Y") }}'>
+                        </div>
+                    </div>
+                    <!--div class="col-md-8 col-md-offset-2">
+                        <div class="alert alert-danger">
+                            <i class="fa fa-info-circle font-red"></i> Je m'engage à <strong>informer par écrit</strong> la Mutuelle de toute modification éventuelle, <strong> au moins un mois avant</strong> le terme de mon épargne.
+    
+                        </div>
+                    </div-->
+                </div>
+
+        </div>
+        <div class="form-actions">
+            <div class="row">
+                <div class="col-md-offset-4 col-md-8">
+                    <button class="btn green btnSubmit" type="button">
+                        <i class="fa fa-check"></i> Valider</button>
+                    <button type="reset" class="btn btn-default">Annuler</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+ {%block stylesheets%}
+<script>
+    $(document).ready(function(e) {
+        $('#montant_depose').on('blur', function(e) {
+            
+            var v = $(this).val().split(' ');
+
+            for(var i=0; i<v.length; i++){
+               $(this).val($(this).val().replace(' ',''));
+            }
+            
+            if (parseInt($(this).val()) < 100000) {
+
+                bootbox.alert("Ce montant est inférieur à 100 000FCFA");
+                $(this).val('');
+                return false;
+            }
+        });
+
+        $('#caracteristiques_dat').add('#duree_mois').change(function (e){
+            var caracteristique = $('#caracteristiques_dat').val();
+            var duree = $('#duree_mois').val();
+            if(caracteristique === "DAT 6 à 12 mois" && ( duree < 6 || duree > 12 ) ){
+                bootbox.alert("La durée doit être comprise entre 6 et 12 mois!");
+                $('#duree_mois').val('');
+                return false;
+            }else if(caracteristique === "DAT 12 à 24 mois" && ( duree < 12 || duree > 24 ) ){
+                bootbox.alert("La durée doit être comprise entre 12 et 24 mois!");
+                $('#duree_mois').val('');
+                return false;
+            }else if(caracteristique === "Plus de 24 mois" && ( duree < 24 ) ){
+                bootbox.alert("La durée doit être supérieure à 24 mois!");
+                $('#duree_mois').val('');
+                return false;
+            }
+        });
+        
+        var separator = " ";
+            $('.separate').on('ready change keyup keypress blur', (function (event){
+
+                //Forcer que des chiffres
+                $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+                    if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                        event.preventDefault();
+                    }
+
+                //Séparer
+                var o = $(this).val().replace(new RegExp(separator, "g"), '')
+                $(this).val( o.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1'+separator) );
+
+            }));
+    })
+</script>
+{%endblock%}
+{% endblock %}

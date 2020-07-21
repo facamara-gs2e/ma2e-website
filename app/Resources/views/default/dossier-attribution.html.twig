@@ -1,0 +1,329 @@
+{% extends 'base.html.twig' %}{%block title%}Projet immobilier{%endblock%} {% block body %}
+
+
+<section class="agents tabs section-top-space section-gray">
+    <div class="center">
+        <!-- Tabs -->
+
+        <ul class="tabs-selector">
+
+            <li>
+
+                <i class="fa fa-bookmark"></i>
+                <span>Première Tranche</span>
+
+            </li>
+
+            <li>
+
+                <i class="fa fa-bookmark"></i>
+                <span>Deuxième Tranche</span>
+
+            </li>
+
+        </ul>
+
+        <div class="content">
+
+            <div class="content-tab-single" style="margin-right: 50px">
+
+
+                <h3>1ere Tranche</h3>
+
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <h2 style="margin-top:-20px">Logement du site SONGON KASSEMBLE</h2>
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <th>Type de Logement</th>
+                                <th>Superficie terrain</th>
+                                <th>Quantité disponible</th>
+                                <th>Coût en en FCFA </th>
+                                <th>Apport Demande</th>
+                            </tr>
+                            <tr>
+                                <td>3 pièces jumelées <br> Type SOCIAL</td>
+                                <td>120 m<sup>2</sup></td>
+                                <td>06</td>
+                                <td>9 600 000</td>
+                                <td>3 360 000</td>
+                            </tr>
+                            <tr>
+                                <td>3 pièces jumelées <br> Type ECO</td>
+                                <td>150 m<sup>2</sup></td>
+                                <td>14</td>
+                                <td>12 000 000</td>
+                                <td>4 200 000</td>
+                            </tr>
+                            <tr>
+                                <td>4 pièces jumelées <br> Type SOCIAL</td>
+                                <td>130 m<sup>2</sup></td>
+                                <td>29</td>
+                                <td>14 000 000</td>
+                                <td>4 900 000</td>
+                            </tr>
+                            <tfoot>
+                                <tr>
+                                    <td>TOTAUX</td>
+                                    <td colspan="2">49</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <div class="clear">
+                        </div>
+
+                        <h2>Logement du site AKANDJE (BINGERVILLE)</h2>
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <th>Type de Logement</th>
+                                <th>Superficie bâtie / Terrain</th>
+                                <th>Quantité disponible</th>
+                                <th>Coût en en FCFA </th>
+                                <th>Apport Demande</th>
+                            </tr>
+                            <tr>
+                                <td>3 pièces en bande Type SOCIAL</td>
+                                <td>63,23/200 m<sup>2</sup></td>
+                                <td>14</td>
+                                <td>13 200 000</td>
+                                <td>4 620 000</td>
+                            </tr>
+                            <tr>
+                                <td>4 pièces individuelles <br> Type ECO</td>
+                                <td>108/260 m<sup>2</sup></td>
+                                <td>24</td>
+                                <td>27 000 000</td>
+                                <td>9 450 000</td>
+                            </tr>
+                            <tfoot>
+                                <tr>
+                                    <td>TOTAUX</td>
+                                    <td colspan="2">38</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <div class="col-md-4">
+                        <ul class="documents">
+
+                            <li class="document document-pdf">
+
+                                <i class="fa fa-file-pdf-o"></i>
+                                <a href="" target="_blank">Compte rendu d'attribution des logements</a>
+                                <span>Taille du document: 34kb</span>
+
+                                <div class="clear">
+                                </div>
+
+                            </li>
+
+                            <li class="document document-pdf">
+
+                                <i class="fa fa-file-pdf-o"></i>
+                                <a href="" target="_blank">Type de logement par site</a>
+                                <span>Taille du document: 34kb</span>
+
+                                <div class="clear">
+                                </div>
+
+                            </li>
+
+                            <li class="document document-pdf">
+
+                                <i class="fa fa-file-pdf-o"></i>
+                                <a href="" target="_blank">Fichier d'affectation des numéros des logements _1</a>
+                                <span>Taille du document: 34kb</span>
+
+                                <div class="clear">
+                                </div>
+
+                            </li>
+
+                            <li class="document document-pdf">
+
+                                <i class="fa fa-file-pdf-o"></i>
+                                <a href="" target="_blank">Fichier d'affectation des numéros des logements _2</a>
+                                <span>Taille du document: 34kb</span>
+
+                                <div class="clear">
+                                </div>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="content-tab-single">
+
+                <h3>2eme tranche</h3>
+                <p>A venir.</p>
+
+            </div>
+
+        </div>
+
+        <div class="clear">
+        </div>
+        <!-- / End Tabs-->
+
+    </div>
+
+</section>
+{% endblock %} {% block stylesheets %}
+
+<link href="{{asset('_assets/_css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+<style>
+    .thumb img {
+        width: 100%;
+        height: auto;
+    }
+    
+    .element-slide {
+        width: 550px;
+    }
+    
+    section.tabs .content h2.color-orange {
+        color: #f38d31;
+    }
+    
+    a.right.carousel-control {
+        /*max-width: 30px;
+        right: 15%;*/
+    }
+    
+    .product-slider {
+        /*padding: 45px;*/
+    }
+    
+    .product-slider #carousel {
+        /*border: 4px solid #1089c0;*/
+        margin: 0;
+    }
+    
+    .product-slider #thumbcarousel {
+        margin: 12px 0 0;
+        padding: 0 15px;
+    }
+    
+    .product-slider #thumbcarousel1 {
+        margin: 12px 0 0;
+        padding: 0 15px;
+    }
+    
+    .product-slider #thumbcarousel2 {
+        margin: 12px 0 0;
+        padding: 0 15px;
+    }
+    
+    .product-slider #thumbcarousel .item {
+        text-align: left;
+    }
+    
+    .product-slider #thumbcarousel1 .item {
+        text-align: left;
+    }
+    
+    .product-slider #thumbcarousel2 .item {
+        text-align: left;
+    }
+    
+    .product-slider #thumbcarousel .item .thumb {
+        /*border: 4px solid #cecece;
+        width: 20%;
+        margin: 0 2%;*/
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+        max-width: 98px;
+    }
+    
+    .product-slider #thumbcarousel1 .item .thumb {
+        /*border: 4px solid #cecece;
+        width: 20%;
+        margin: 0 2%;*/
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+        max-width: 98px;
+    }
+    
+    .product-slider #thumbcarousel2 .item .thumb {
+        /*border: 4px solid #cecece;
+        width: 20%;
+        margin: 0 2%;*/
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+        max-width: 98px;
+    }
+    
+    .product-slider #thumbcarousel .item .thumb:hover {
+        border-color: #1089c0;
+    }
+    /*.product-slider .item img {
+        width: 100%;
+        height: auto;
+    }*/
+    
+    .carousel-control {
+        color: #0284b8;
+        text-align: center;
+        text-shadow: none;
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+        line-height: 20px;
+        top: 23%;
+    }
+    
+    .carousel-control:hover,
+    .carousel-control:focus,
+    .carousel-control:active {
+        color: #333;
+    }
+    
+    .carousel-caption,
+    .carousel-control .fa {
+        font: normal normal normal 30px/26px FontAwesome;
+    }
+    
+    .carousel-control {
+        background-color: rgba(0, 0, 0, 0);
+        bottom: auto;
+        font-size: 20px;
+        left: 0;
+        position: absolute;
+        top: 30%;
+        width: auto;
+    }
+    
+    .rights {
+        margin-left: 550px;
+    }
+    
+    .carousel-control.right,
+    .carousel-control.left {
+        background-color: rgba(0, 0, 0, 0);
+        background-image: none;
+    }
+    
+    .carousel-control.left {
+        margin-left: -5%;
+    }
+    
+    .carousel-control.right {
+        margin-right: 20%;
+    }
+</style>
+{% endblock %}

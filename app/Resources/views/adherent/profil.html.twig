@@ -1,0 +1,279 @@
+{% extends 'layouts/layout-adherent.html.twig' %}{%block title%}Espace adhérent{%endblock%} {% block body %}
+
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#">Espace adhérent</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Infos perso</span>
+        </li>
+    </ul>
+</div>
+
+<h1 class="page-title"> Profil utilisateur
+    <small>Informations personnelles</small>
+</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN PROFILE SIDEBAR -->
+        <div class="profile-sidebar">
+            <!-- PORTLET MAIN -->
+            <div class="portlet light profile-sidebar-portlet ">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    <img src="{{ asset('assets/layouts/layout/img/avatar.png')}}" class="img-responsive" alt=""> </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name" id="nometprenom">Nom de l'utilisateur</div>
+                    <div class="" id="profession"> Profession </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR MENU -->
+
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="">
+                                <i class="icon-check"></i> Société: <span id="societe"></span></a>
+                        </li>
+                        <li class="active">
+                            <a href="">
+                                <i class="icon-check"></i> Direction: <span id="direction"></span> </a>
+                        </li>
+                        <li class="active">
+                            <a href="">
+                                <i class="icon-check"></i> Exploitation: <span id="exploitation"></span> </a>
+                        </li>
+                        <li class="active">
+                            <a href="">
+                                <i class="icon-check"></i> Service: <span id="service"></span> </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+            <!-- END PORTLET MAIN -->
+
+        </div>
+        <!-- END BEGIN PROFILE SIDEBAR -->
+        <!-- BEGIN PROFILE CONTENT -->
+        <div class="profile-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title tabbable-line">
+                            <div class="caption caption-md">
+                                <i class="icon-globe theme-font hide"></i>
+                                <span class="caption-subject font-green bold uppercase">Profil Utilisateur</span>
+                            </div>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#tab_1_1" data-toggle="tab" aria-expanded="false">Infos générales</a>
+                                </li>
+                                <li class="">
+                                    <a href="#tab_1_2" data-toggle="tab" aria-expanded="false">Changer le mot de passe</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row">
+
+                            {% for message in app.session.flashbag.get('success') %}
+                            <div class="row">
+                                <div class="alert alert-block alert-success fade in">
+                                    <button type="button" class="close" data-dismiss="alert"></button>
+                                    <p>
+                                        <stronng>{{message}}</stronng>
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %} {% for message in app.session.flashbag.get('error') %}
+                            <div class="row">
+                                <div class="alert alert-block alert-danger fade in">
+                                    <button type="button" class="close" data-dismiss="alert"></button>
+                                    <p>
+                                        <stronng>{{message}}</stronng>
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="portlet-body">
+                            <div class="tab-content">
+                                <!-- PERSONAL INFO TAB -->
+                                <div class="tab-pane active" id="tab_1_1">
+                                    <div class="form-group">
+                                        <label class="control-label">Nom & prénoms du conjoint</label>
+                                        <input type="text" placeholder="Nom & prénoms du conjoint" class="form-control" id="nomprenconjointe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Matricule</label>
+                                        <input type="text" placeholder="Matricule" class="form-control" id="matricule">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Code d'adhérent</label>
+                                        <input type="text" placeholder="Code d'adhérent" class="form-control" id="code_adherent">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Date de naissance</label>
+                                        <input type="text" placeholder="Date de naissance" class="form-control" id="dateNaissance">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Infos adhérent</label>
+                                        <input type="text" placeholder="Infos adhérent" class="form-control" id="infosAdherent">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Adresse postale</label>
+                                        <input type="text" placeholder="Adresse postale" class="form-control" id="adressePostale">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Catégorie</label>
+                                        <input type="text" placeholder="Catégorie" class="form-control" id="categorie">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">N° CNI</label>
+                                        <input type="text" placeholder="N° CNI" class="form-control" id="cni">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Nationalité</label>
+                                        <input type="text" placeholder="Nationalité" class="form-control" id="nationalite">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Contacts</label>
+                                        <input type="text" placeholder="Contacts" class="form-control" id="contacts">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Contacts Domicile</label>
+                                        <input type="text" placeholder="Contacts Domicile" class="form-control" id="contactsDomicile">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Ville</label>
+                                        <input type="text" placeholder="Contacts Domicile" class="form-control" id="ville">
+                                    </div>
+                                </div>
+                                <!-- END PERSONAL INFO TAB -->
+                                <!-- CHANGE AVATAR TAB -->
+                                <div class="tab-pane" id="tab_1_2">
+                                    <form action="{{path('actionChangePwd')}}" method="post" class="formSubmit">
+                                        <div class="form-group">
+                                            <label class="control-label">Mot de passe actuel</label>
+                                            <input type="password" class="form-control" required name="password" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Nouveau mot de passe</label>
+                                            <input type="password" class="form-control" required name="new_password" id="new_password" />
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-8">
+                                                <div id="msg-pwd"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Confirmer le mot de passe</label>
+                                            <input type="password" class="form-control" required name="c_new_password" id="c_new_password" />
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-8">
+                                                <div id="c-pwd"></div>
+                                            </div>
+                                        </div>
+                                        <div class="margin-top-10">
+                                            <button class="btn green" type="submit" id="btn-valider"> Valider </button>
+                                            <button class="btn default" type="reset"> Annuler </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- END CHANGE AVATAR TAB -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PROFILE CONTENT -->
+    </div>
+</div>
+
+<div class="code_adherent" data-codeadherent="{{code_adherent}}"></div>
+{%block javascript %}
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+{%endblock%} {% endblock %} {% block stylesheets %}
+<script>
+    $(document).ready(function(e) {
+        //$base_url = window.location.origin;
+        $base_url = "http://10.109.19.235";
+        $('#new_password').blur(function(e) {
+            var password = $('#new_password').val();
+            //Sont obligatoires, des lettres (minuscule comme majuscule) et des chiffres
+            //Caractères spéciaux interdits
+            if ((/^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}$/).test(password)) {
+                $('#btn-valider').prop('disabled', false);
+                $('#msg-pwd').html('<div class="alert alert-success"><i class="fa fa-check fa-check success"></i>  Le mot de passe est correct!</div>');
+            } else {
+                $('#btn-valider').prop('disabled', true);
+                $('#msg-pwd').html('<div class="alert alert-danger"><i class="fa fa-circle"></i> Le mot de passe doit contenir au moins une lettre minuscule <br> <i class="fa fa-circle"></i> Le mot de passe doit contenir au moins un chiffre <br> <i class="fa fa-circle "></i> Le mot de passe ne doit pas contenir des caractères spéciaux <br> <i class="fa fa-circle"></i> Le mot de passe doit contenir au moins 8 caractères</div>');
+            }
+
+
+        });
+        $('#c_new_password').blur(function(e) {
+            var c_password = $('#c_new_password').val();
+            var password = $('#new_password').val();
+            //Assurer la concordance avec le champs mot de passe
+
+            if (c_password != password) {
+                $('#btn-valider').prop('disabled', true);
+                $('#c-pwd').html('<div class="alert alert-danger"><i class="fa fa-circle"></i> Les mots de passe ne sont pas identiques!</div>');
+
+            } else {
+                $('#btn-valider').prop('disabled', false);
+                $('#c-pwd').html('<div class="alert alert-success"><i class="fa fa-check fa-check success"></i> Les mots de passe sont identiques! </div>');
+
+            }
+
+        });
+
+        //Recupération des données par API
+
+        var code_adherent = $('.code_adherent').data("codeadherent");
+        $.ajax({
+
+            //url: "http://localhost:8888/GS2E/api-ma2e/web/api/v1/codeCompteDecroissant/" + code_adherent,
+            url: $base_url+"/api-ma2e/web/api/v1/adherents/" + code_adherent,
+            type: "get",
+            data: "code = " + code_adherent,
+            datatype: 'application/json',
+
+            success: function(res) {
+                $('#nometprenom').html(res.nom + ' ' + res.prenom);
+                $('#profession').html(res.profession);
+                $('#societe').html(res.societe);
+                $('#direction').html(res.direction);
+                $('#exploitation').html(res.exploitation);
+                $('#service').html(res.service);
+                $('#nomprenconjointe').val(res.nomprenconjointe);
+                $('#matricule').val(res.matricule);
+                $('#code_adherent').val(res.codeadherent);
+                $('#dateNaissance').val(res.datenaissance);
+                $('#infosAdherent').val(res.infosadherent);
+                $('#adressePostale').val(res.adresspostal);
+                $('#categorie').val(res.categorie);
+                $('#cni').val(res.cni);
+                $('#nationalite').val(res.pays);
+                $('#contacts').val(res.teladherent);
+                $('#contactsDomicile').val(res.teldomicile);
+                $('#ville').val(res.ville);
+
+            },
+            error: function(res) {
+                //alert('error');
+            }
+        });
+    });
+</script>
+{% endblock %}

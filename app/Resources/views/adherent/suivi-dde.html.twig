@@ -1,0 +1,168 @@
+{% extends 'layouts/layout-adherent.html.twig' %}{%block title%}Espace adhérent{%endblock%} {% block body %}
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#">Espace adhérent</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Service</span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Suivi de mes demandes</span>
+        </li>
+    </ul>
+    <div class="page-breadcrumb pull-right">
+        <div class="badge badge-orange">
+            Espace sécurisé <i class="fa fa-lock"></i>
+        </div>
+    </div>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h1 class="page-title">Suivi de mes demandes </h1>
+<!-- END PAGE TITLE-->
+<!-- END PAGE HEADER-->
+
+<div class="row">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-green-sharp">
+                <i class="fa fa-pencil-square-o font-green-sharp"></i>
+                <span class="caption-subject bold uppercase"> Recapitulatif du suivi de mes demandes</span>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-scrollable">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th> Demande</th>
+                            <th> Date de la demande </th>
+                            <th> Date de traitement MA2E </th>
+                            <th> Statut </th>
+                            <th>Observations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%if total is defined and total == 0%}
+                        <tr>
+                            <td colspan="5" class="text-center">Aucune donnée disponible.</td>
+                        </tr>
+                        {%endif%}
+                        {%if countSouscription is defined and countSouscription != 0%}
+                        <tr class="active">
+                            <td colspan="5" class="sbold">DEMANDE DE SOUSCRIPTION</td>
+                        </tr>
+                        {%endif%}
+                        {% for dde in dde_souscription %}
+                        <tr>
+                            <td>Demande de souscription de la Carte VISA Prépayée UBA</td>
+                            <td>{{dde.date_demande}}</td>
+                            <td>{{dde.date_validation}}</td>
+                            <td>{{dde.statut}}</td>
+                            <td>{{dde.observation}}</td>
+                        </tr>
+                        {%endfor%}
+                        {%if countSouscriptionDat is defined and countSouscriptionDat != 0%}
+                        <tr class="active">
+                            <td colspan="5" class="sbold">DEMANDE DE SOUSCRIPTION AU DAT SIMPLE</td>
+                        </tr>
+                        {%endif%} {% for dde in dde_souscription_dat %}
+                        <tr>
+                            <td>Demande de souscription au Dépôt à Terme</td>
+                            <td>{{dde.date_demande}}</td>
+                            <td>{{dde.date_validation}}</td>
+                            <td>{{dde.statut}}</td>
+                            <td>{{dde.observation}}</td>
+                        </tr>
+                        {%endfor%}
+                        {%if countSouscriptionDatProgressif is defined and countSouscriptionDatProgressif != 0%}
+                        <tr class="active">
+                            <td colspan="5" class="sbold">DEMANDE DE SOUSCRIPTION AU DAT PROGRESSIF</td>
+                        </tr>
+                        {%endif%}{% for dde in dde_souscription_dat_progressif %}
+                        <tr>
+                            <td>Demande de souscription au Dépôt à Terme à versement progressif</td>
+                            <td>{{dde.date_demande}}</td>
+                            <td>{{dde.date_validation}}</td>
+                            <td>{{dde.statut}}</td>
+                            <td>{{dde.observation}}</td>
+                        </tr>
+                        {%endfor%}
+                        {%if countRechargement is defined and countRechargement != 0%}
+                        <tr class="active">
+                            <td colspan="5" class="sbold">DEMANDE DE RECHARGEMENT</td>
+                        </tr>
+                        {%endif%} {% for dde in dde_rechargement%}
+                        <tr>
+                            <td>Demande de rechargement de la carte VISA prépayée UBA</td>
+                            <td>{{dde.date_demande}}</td>
+                            <td>{{dde.date_validation}}</td>
+                            <td>{{dde.statut}}</td>
+                            <td>{{dde.observation}}</td>
+                        </tr>
+                        {%endfor%}
+                        {%if countRechargement is defined and countReedition != 0%}
+                        <tr class="active">
+                            <td colspan="5" class="sbold">DEMANDE DE REEDITION DE CODE</td>
+                        </tr>
+                        {%endif%}{% for dde in dde_reedition%}
+                        <tr>
+                            <td>Demande de réédition de code de la carte VISA Prépayée UBA</td>
+                            <td>{{dde.date_demande}}</td>
+                            <td>{{dde.date_validation}}</td>
+                            <td>{{dde.statut}}</td>
+                            <td>{{dde.observation}}</td>
+                        </tr>
+                        {%endfor%}
+                        {%if countRegularisation is defined and countRegularisation != 0%}
+                        <tr class="active">
+                            <td colspan="5" class="sbold">DEMANDE DE REGULARISATION</td>
+                        </tr>
+                        {%endif%}{% for dde in dde_regularisation%}
+                        <tr>
+                            <td>Demande de régularisation de débit à tort sur la carte VISA Prépayée UBA</td>
+                            <td>{{dde.date_demande}}</td>
+                            <td>{{dde.date_validation}}</td>
+                            <td>{{dde.statut}}</td>
+                            <td>{{dde.observation_op}}</td>
+                        </tr>
+                        {%endfor%}
+                        {%if countEpargne is defined and countEpargne != 0%}
+                        <tr class="active">
+                            <td colspan="5" class="sbold">DEMANDE D'EPARGNE</td>
+                        </tr>
+                        {%endif%}{% for dde in dde_epargne%}
+                        <tr>
+                            <td>Demande d'épargne</td>
+                            <td>{{dde.date_demande}}</td>
+                            <td>{{dde.date_validation}}</td>
+                            <td>{{dde.statut}}</td>
+                            <td>{{dde.observation}}</td>
+                        </tr>
+                        {%endfor%}
+                        {%if countVirement is defined and countVirement != 0%}
+                        <tr class="active">
+                            <td colspan="5" class="sbold">DEMANDE DE VIREMENT</td>
+                        </tr>
+                        {%endif%}{% for dde in dde_virement%}
+                        <tr>
+                            <td>Demande de virement de compte à compte</td>
+                            <td>{{dde.date_demande}}</td>
+                            <td>{{dde.date_validation}}</td>
+                            <td>{{dde.statut}}</td>
+                            <td>{{dde.observation}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

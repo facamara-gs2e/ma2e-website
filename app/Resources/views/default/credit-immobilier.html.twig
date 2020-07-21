@@ -1,0 +1,159 @@
+{% extends 'base.html.twig' %}{%block title%}Produits d'Epargne{%endblock%} {% block body %}
+
+<!-- Epargne expresse-->
+<section class="box-with-image-left section-top-space">
+
+    <div class="center">
+
+        <div class="image" style="background-image: url( '{{asset('_assets/_img/produit/credit_immobilier.jpeg')}}' );">
+        </div>
+
+        <div class="content">
+
+            <h2 class="color-orange">Crédit immobilier</h2>
+
+            <h4>Objet</h4>
+            <p>Crédit destiné à financer le coût résiduel du logement en complément de l’apport personnel exigé dans le cadre du projet immobilier de MA2E</p>
+
+            <h4>Bénéficiaire </h4>
+            <p>Tous les adhérents de la MA2E disposant d’un compte d’épargne logement</p>
+
+            <h4>Critères d’octroie</h4>
+            <p>
+                <ul>
+                    <li>Ouvrir un compte d’épargne logement et y déposer 20 à 35% du coût du logement</li>
+                    <li>Quotité cessible disponible supérieure à la mensualité du crédit d’au moins 15 000 F CFA</li>
+                    <li>Frais de dossier : 100 000 F CFA.</li>
+                    <li>Fonds de garantie : 50. 000 F CFA.</li>
+                </ul>
+            </p>
+
+            <h4>Montant du prêt</h4>
+            <p>­Montant maximum : 20. 000.000 F CFA</p>
+
+            <h4>Périodicité de remboursement</h4>
+            <p>Mensuelle (avec possibilité de remboursement anticipé ou rachat total)</p>
+
+            <h4>Modalités de remboursement</h4>
+            <p>
+                <ul>
+                    <li>­Retenue à la source.</li>
+                    <li>­Remboursement anticipé du crédit : retenue de 1% de l’encours du capital de crédit au moment du remboursement</li>
+                </ul>
+            </p>
+
+            <h4>Taux d’intérêt</h4>
+            <p>Annuel  7%, </p>
+
+            <h4>Durée maximale du prêt</h4>
+            <p>144 / 168 mois ou 12 / 14 ans</p>
+
+            <h4>Garantie associée au crédit</h4>
+            <p>
+                <ul>
+                    <li>Convention de crédit</li>
+                    <li>Délégation d’une Assurance-Vie emprunteur</li>
+                    <li>Droits légaux à la sortie de MA2E (part cessible)
+                            Fonds Commun de Placement rendu disponible par la sortie de l’entreprise (part cessible)
+                            </li>
+                </ul>
+            </p>
+            
+
+
+            <!--table class="table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <td>
+                            Montant maximum</th>
+                            <td>
+                                20 million de FCFA</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            Durée du crédit</td>
+                        <td>
+                            12 ans (144 mois)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Taux d’intérêt</td>
+                        <td>
+                            7% par an</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Apport personnel</td>
+                        <td>
+                            35% du montant du crédit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Epargne Complémentaire</td>
+                        <td>
+                            Néant</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Frais de dossier</td>
+                        <td>
+                            100&nbsp;000 FCFA</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Fonds de garantie</td>
+                        <td>
+                            50&nbsp;000 FCFA</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Pénalité de remboursement anticipé</td>
+                        <td>
+                            Néant</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Suretés</td>
+                        <td>
+                            <ul>
+                                <li style="margin-left: 0.38in;">
+                                    Convention de crédit</li>
+                                <li style="margin-left: 0.38in;">
+                                    Assurance-vie emprunteur</li>
+                                <li style="margin-left: 0.38in;">
+                                    Droits légaux à la sortie de MA2E (part cessible)</li>
+                                <li style="margin-left: 0.38in;">
+                                    Fonds Commun de Placement rendu disponible par la sortie de l’entreprise (part cessible)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table-->
+
+        </div>
+
+        <div class="clear">
+        </div>
+
+    </div>
+
+</section>
+<!-- /Epargne expresse-->
+
+
+{% endblock %} {% block stylesheets %}
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<style>
+    tr .table-color {
+        background-color: #4ba146;
+        color: #fefefe;
+        text-align: center;
+    }
+    
+    .table-striped>tbody>tr>.table-color {
+        background-color: #4ba146;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,190 @@
+{% extends 'layouts/layout-adherent.html.twig' %}{%block title%}Espace adhérent{%endblock%} {% block body %}
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#">Espace adhérent</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a href="{{path('adherent-solde')}}">Solde des comptes</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Relevé des comptes</span>
+        </li>
+    </ul>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h1 class="page-title"> Relevé des comptes</h1>
+<!-- END PAGE TITLE-->
+<!-- END PAGE HEADER-->
+
+<div class="row">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption">
+                <div class="font-green-sharp">
+                        <i class="fa fa-edit font-green-sharp"></i>
+                        <span class="caption-subject bold uppercase" id="libelleProduit"></span>
+                </div>
+                <br>
+                <span>Solde au <strong>{{ "now"|date("d/m/Y") }}</strong> : <span class="label label-success"> <strong> <span id="soldeCompte"></span> F CFA</strong></span> </span>
+                
+            </div>
+            <div class="actions">
+                    <a href="{{path('adherent-solde')}}" class="btn btn-success"><i class="fa fa-arrow-left"></i> Retour à la page préc</a>
+                <!--span><strong>Période:</strong> Du 01/01/2010 au 01/01/2011</span-->
+                
+            </div>
+            
+        </div>
+        <div class="col-md-12">
+        </div>
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="alert alert-danger text-center">
+                        <small><i class="fa fa-info-circle font-red"></i> <strong>SAUF ERREUR OU OMISSION</strong>
+                    </small>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered myDatatable" id="listeEpargne">
+                    <thead>
+                        <tr>
+                            <th style="width:8%"> Date </th>
+                            <th style="width:62%"> Nature des opérations </th>
+                            <th style="width:10%"> Débit </th>
+                            <th style="width:10%"> Crédit </th>
+                            <th style="width:10%"> Solde </th>
+                        </tr>
+                    </thead>
+                    <!--tbody>
+                        <tr>
+                            <td colspan="5">aaa</td>
+                        </tr>
+                    </tbody-->
+                    <!--tfoot>
+
+                        <tr>
+                            <th colspan="2" class="text-right"> Total (Exprimé en FCFA) </th>
+                            <th id="totalDebit"></th>
+                            <th id="totalCredit"></th>
+                            <th id="totalSolde"></th>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="text-right"> Nombre de mouvements </th>
+                            <th id="mvtDebit"> </th>
+                            <th id="mvtCredit"> </th>
+                            <th>&nbsp; </th>
+                        </tr>
+                    </tfoot-->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="code_adherent" data-codeadherent="{{code_adherent}}"></div>
+<div class="numcpte" data-numcpte="{{numcpte}}"></div>
+
+{% endblock %} {% block stylesheets %}
+<script>
+    $(document).ready(function() {
+
+        //$base_url = window.location.origin;
+        $base_url = "http://10.109.19.235";
+        table = $('#listeEpargne').DataTable();
+        //table.clear();
+
+        var code_adherent = $('.code_adherent').data("codeadherent");
+        var numcpte = $('.numcpte').data("numcpte");
+
+        //Recupération du nom du produit
+        $.ajax({
+            url: $base_url+"/api-ma2e/web/api/v1/compte/" + numcpte,
+            type: "get",
+            data: "numero=" + numcpte,
+            datatype: 'application/json',
+            success: function(dataProduit) {
+                $('#libelleProduit').html(dataProduit.data[0].produit); //Affiche le nom du produit
+                $('#soldeCompte').html(parseFloat(dataProduit.data[0].montantdispo).toLocaleString());  //Affiche le solde du compte à la date actuelle
+            }
+        });
+       /* $.get("http://172.16.2.118/api-ma2e/web/api/v1/operation/epargne/" + code_adherent + "/" + numcpte)
+        .complete(function() {
+        alert("ok")
+        })*/
+
+        $.ajax({
+
+            url: $base_url+"/api-ma2e/web/api/v1/operation/epargne/" + code_adherent + "/" + numcpte,
+            type: "get",
+            data: "code = " + code_adherent + "&numCompte=" + numcpte,
+            datatype: 'application/json',
+            /*beforeSend: function(re){
+                alert("ok");
+            },*/
+            success: function(res) {
+                var nb_ligne = res.data.length;
+
+                //Calcul des totaux
+                var totalDebit = 0;
+                var totalCredit = 0;
+                var totalSolde = 0;
+
+                //Calcul des mouvements
+                var mvtDebit = 0;
+                var mvtCredit = 0;
+
+                if (nb_ligne == 0) {
+                    /*On reinitialise le datatable*/
+                    table.draw(true);
+
+                } else {
+                    /*On affiche progressivement les données*/
+                    for (var i = 0; i < nb_ligne; i++) {
+
+                        //Ajout des lignes dans le tableau
+                        table.row.add([
+                            res.data[i].DateOperation,
+                            res.data[i].NatureOperation,
+                            parseFloat(res.data[i].Debit).toLocaleString(),
+                            parseFloat(res.data[i].Credit).toLocaleString(),
+                            parseFloat(res.data[i].SoldeApresOper).toLocaleString(),
+                        ]).draw(true);
+
+                        //Préparation du total
+                        totalDebit = totalDebit + parseFloat(res.data[i].Debit);
+                        totalCredit = totalCredit + parseFloat(res.data[i].Credit);
+                        totalSolde = totalSolde + parseFloat(res.data[i].SoldeApresOper);
+
+                        //Affectation des totaux au tableau
+                        $('#totalDebit').html(parseFloat(totalDebit).toLocaleString());
+                        $('#totalCredit').html(parseFloat(totalCredit).toLocaleString());
+                        $('#totalSolde').html(parseFloat(totalSolde).toLocaleString());
+
+                        //Calcul des mouvements
+                        if (res.data[i].SensOperation == "C") {
+                            mvtCredit = mvtCredit + 1;
+                        } else {
+                            mvtDebit = mvtDebit + 1;
+                        }
+                        //Affectation des mouvements au tableau
+                        $('#mvtDebit').html(mvtDebit);
+                        $('#mvtCredit').html(mvtCredit);
+
+                    }
+                }
+            },
+            error: function(res) {
+                table.draw(true);
+            }
+        });
+    })
+</script>
+{% endblock %}

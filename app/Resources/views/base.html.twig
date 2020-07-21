@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MA2E | {% block title %}{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="{{asset('_assets/signika.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('_assets/_libs/font-awesome/css/font-awesome.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('_assets/_libs/no-ui-slider/jquery.nouislider.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('_assets/_libs/animate.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('_assets/_css/style.css')}}" /> {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('_assets/_img/logo.png') }}" />
+</head>
+
+<body>
+
+    <!--div id="loader">
+
+        <div class="loader-spinner">
+        </div>
+
+    </div-->
+
+    <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-down"></i></a>
+
+    <div id="contact-popup">
+
+        <div id="contact-popup-background">
+        </div>
+
+        <div id="contact-popup-content" class="animated speed">
+
+            <div id="contact-popup-close"><i class="fa fa-times"></i></div>
+
+            <div id="google-map" data-lat="37.42565" data-lng="-122.13535" data-zoom-level="12">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.021572326478!2d-4.019344900864564!3d5.318556789182702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1ebb873431b27%3A0xb43cdb6d42cb1dcd!2sImmeuble+SIDAM%2C+Avenue+Crosson+Duplessis%2C+Abidjan!5e0!3m2!1sfr!2sci!4v1529683768486"
+                    width="300" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+
+            <div class="padding">
+
+                <i class="fa fa-envelope-o background-icon"></i>
+
+                <h3>Contactez Nous</h3>
+                <h3 class="right">(+225) 21 23 64 87 </h3>
+
+                <h2>Pour toutes suggestions ou réclamations, Envoyez-nous un mail !</span></h2>
+                <form method="post" class="form" action="{{path('contact-mail')}}">
+
+                    <h4>Vos contacts:</h4>
+                    <input type="text" name="nom" placeholder="Votre nom..." class="contact-form-element contact-form-client-name" required/>
+                    <input type="text" name="tel" placeholder="Votre numéro de téléphone..." class="contact-form-element last" required/>
+                    <input type="email" name="mail" placeholder="Votre adresse email..." class="contact-form-element contact-form-client-email" required/>
+                    <input type="text" name="sujet" placeholder="Votre sujet..." class="contact-form-element contact-form-client-message-title last" required/>
+
+                    <h4>Message:</h4>
+                    <textarea name="message" rows="5" cols="5" placeholder="Votre message..." class="contact-form-element"></textarea>
+                    <button class="button button-navy-blue send-contact" type="submit">Envoyez le message! <i class="fa fa-paper-plane-o"></i></button>
+
+                    <div class="contact-form-thanks">
+
+                        <div class="contact-form-thanks-content">
+
+                            Your message has been sent successfully.
+                            <span class="contact-form-thanks-close">Close this notice.</span>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="quote-popup">
+
+        <div id="quote-popup-background">
+        </div>
+
+        <div id="quote-popup-content" class="animated speed">
+
+            <div id="quote-popup-close"><i class="fa fa-times"></i></div>
+
+            <ul id="quote-popup-tabs">
+
+                <li data-quote-tab-for="ordinaire">Crédit ordinaire</li>
+                <li data-quote-tab-for="express">Crédit Expresse</li>
+                <li data-quote-tab-for="immobilier">Crédit immobilier</li>
+                <li data-quote-tab-for="immobilier-differe">Crédit immobilier différé</li>
+
+            </ul>
+
+            <div class="quote-forms">
+
+                <!--
+                        travel insurance
+                        -->
+                <div class="quote-form" data-quote-form-for="ordinaire">
+
+                    <i class="fa fa-bus background-icon"></i>
+
+                    <div class="quote-form-background" style="background-image: url( '{{asset('_assets/_img/image1.jpg')}}' );">
+                    </div>
+
+                    <div class="quote-form-content">
+
+                        <h2>Crédit ordinaire </h2>
+                        <div class="form">
+
+                            <h4>Level of protection: <span class="slider-value quote-form-element" data-name="Level of protection" data-slider-id="travel-protection-level">$<span></span></span>
+                            </h4>
+                            <div class="slider" data-slider-min="10000" data-slider-max="1000000" data-slider-start="200000" data-slider-step="10000" data-slider-id="travel-protection-level"></div>
+
+                            <h4>Contact details:</h4>
+                            <input type="text" class="quote-form-element quote-form-client-name" name="Full name" placeholder="Full Name..." />
+
+                            <span class="custom-dropdown last">
+                                    
+                                        <select name="How many persons?" class="custom-dropdown-select quote-form-element">
+                                        
+                                            <option value="-">How many persons?</option>
+                                                {%for i in 1 .. 10 %}
+                                                    <option value="{{i}}" >{{i}}</option>
+                                                {% endfor %}
+                                        
+                                        </select>
+                                    
+                                    </span>
+
+                            <input type="text" name="Phone Number" placeholder="Phone Number..." class="quote-form-element" />
+                            <input type="text" name="E-mail Address" placeholder="E-mail Address..." class="quote-form-element quote-form-client-email last" />
+
+                            <h4>Travel:</h4>
+                            <input type="text" name="Destination" placeholder="Destination..." class="quote-form-element" />
+
+                            <span class="custom-dropdown last">
+                                        
+                                        <select name="How long?" class="custom-dropdown-select quote-form-element">
+        
+                                            <option value="-">How long?</option>
+                                            <option value="less than 1 week">less than 1 week</option>
+                                            <option value="1 week">1 week</option>
+                                            <option value="2 weeks">2 weeks</option>
+                                            <option value="3 weeks">3 weeks</option>
+                                            <option value="4 weeks and more">4 weeks and more</option>
+        
+                                        </select>
+        
+                                    </span>
+
+                            <button class="button button-navy-blue send-quote" type="button">Obtenir une Estimation <i class="fa fa-paper-plane-o"></i></button>
+
+                            <div class="quote-form-thanks">
+
+                                <div class="quote-form-thanks-content">
+
+                                    Your insurance quote has been sent successfully.
+                                    <span class="quote-form-thanks-close">Close this notice.</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--
+                        car insurance
+                        -->
+                <div class="quote-form" data-quote-form-for="express">
+
+                    <i class="fa fa-car background-icon"></i>
+
+                    <div class="quote-form-background" style="background-image: url( '{{asset('_assets/_img/image.png')}}' );">
+                    </div>
+
+                    <div class="quote-form-content">
+
+                        <h2>Crédit expresse </h2>
+                        <div class="form">
+
+                            <h4>Contact details:</h4>
+                            <input type="text" class="quote-form-element quote-form-client-name" name="Full name" placeholder="Full Name..." />
+
+                            <span class="custom-dropdown last">
+                                    
+                                        <select name="Age" class="custom-dropdown-select quote-form-element">
+                                        
+                                                <option value="-">Votre âge</option>
+                                                {%for i in 18 .. 99 %}
+                                                    <option value="{{i}}" >{{i}}</option>
+                                                {% endfor %}
+                                        
+                                        </select>
+                                    
+                                    </span>
+
+                            <input type="text" name="Phone Number" placeholder="Phone Number..." class="quote-form-element" />
+                            <input type="text" name="E-mail Address" placeholder="E-mail Address..." class="quote-form-element quote-form-client-email last" />
+
+                            <h4>Your car</h4>
+                            <input type="text" name="Car Manufacturer" placeholder="Manufacturer..." class="quote-form-element" />
+                            <input type="text" name="Car Model" placeholder="Model..." class="quote-form-element last" />
+
+                            <span class="custom-dropdown">
+                                    
+                                        <select name="Registration year" class="custom-dropdown-select quote-form-element">
+                                        
+                                                <option value="-">Votre âge</option>
+                                                {%for i in 18 .. 99 %}
+                                                    <option value="{{i}}" >{{i}}</option>
+                                                {% endfor %}
+                                        
+                                        </select>
+                                    
+                                    </span>
+
+                            <button class="button button-navy-blue send-quote" type="button">Obtenir une Estimation <i class="fa fa-paper-plane-o"></i></button>
+
+                            <div class="quote-form-thanks">
+
+                                <div class="quote-form-thanks-content">
+
+                                    Your insurance quote has been sent successfully.
+                                    <span class="quote-form-thanks-close">Close this notice.</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--
+                        life insurance
+                        -->
+                <div class="quote-form" data-quote-form-for="immobilier">
+
+                    <i class="fa fa-umbrella background-icon"></i>
+
+                    <div class="quote-form-background" style="background-image: url( '{{asset('_assets/_img/image.png')}}' );">
+                    </div>
+
+                    <div class="quote-form-content">
+
+                        <h2>Crédit immobilier </h2>
+                        <div class="form">
+
+                            <h4>Level of protection: <span class="slider-value quote-form-element" data-name="Level of protection" data-slider-id="life-protection-level">$<span></span></span>
+                            </h4>
+                            <div class="slider" data-slider-min="10000" data-slider-max="1000000" data-slider-start="200000" data-slider-step="10000" data-slider-id="life-protection-level"></div>
+
+                            <h4>Contact details:</h4>
+                            <input type="text" class="quote-form-element quote-form-client-name" name="Full name" placeholder="Full Name..." />
+
+                            <span class="custom-dropdown last">
+                                    
+                                        <select name="Age" class="custom-dropdown-select quote-form-element">
+                                        
+                                                <option value="-">Votre âge</option>
+                                                {%for i in 18 .. 99 %}
+                                                    <option value="{{i}}" >{{i}}</option>
+                                                {% endfor %}
+                                        
+                                        </select>
+                                    
+                                    </span>
+
+                            <input type="text" name="Phone Number" placeholder="Phone Number..." class="quote-form-element" />
+                            <input type="text" name="E-mail Address" placeholder="E-mail Address..." class="quote-form-element quote-form-client-email last" />
+
+                            <h4>Have you used tobacco or nicotine products in the last 12 months?</h4>
+                            <div class="checkbox quote-form-element" data-checked="yes" data-name="Have you used tobacco or nicotine products in the last 12 months?">
+
+                                <span class="checkbox-status"><i class="fa fa-check"></i></span>
+                                <span class="checkbox-values">
+                                        
+                                            <span class="checkbox-value-checked">Yes, I have</span>
+                                <span class="checkbox-value-unchecked">No, I haven't</span>
+
+                                </span>
+
+                            </div>
+
+                            <button class="button button-navy-blue send-quote" type="button">Obtenir une Estimation <i class="fa fa-paper-plane-o"></i></button>
+
+                            <div class="quote-form-thanks">
+
+                                <div class="quote-form-thanks-content">
+
+                                    Your insurance quote has been sent successfully.
+                                    <span class="quote-form-thanks-close">Close this notice.</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--
+                        house insurance
+                        -->
+                <div class="quote-form" data-quote-form-for="immobilier-differe">
+
+                    <i class="fa fa-home background-icon"></i>
+
+                    <div class="quote-form-background" style="background-image: url( '{{asset('_assets/_img/image.png')}}' );">
+                    </div>
+
+                    <div class="quote-form-content">
+
+                        <h2>Crédit immobilier différé </h2>
+                        <div class="form">
+
+                            <h4>Your house:</h4>
+                            <span class="custom-dropdown">
+                                    
+                                        <select name="What sort of property is it?" class="custom-dropdown-select quote-form-element">
+                                        
+                                            <option value="-">What sort of property is it?</option>
+                                            <option value="House">House</option>
+                                            <option value="Flat / Apartment">Flat / Apartment</option>
+                                            <option value="Bungalow">Bungalow</option>
+                                            <option value="Town house">Town house</option>
+                                            <option value="Other">Other</option>
+                                        
+                                        </select>
+                                    
+                                    </span>
+
+                            <span class="custom-dropdown last">
+                                    
+                                        <select name="What type of property is it?" class="custom-dropdown-select quote-form-element">
+                                        
+                                            <option value="-">What type of property is it?</option>
+                                            <option value="Semi-detached">Semi-detached</option>
+                                            <option value="Detached">Detached</option>
+                                            <option value="Link-detached">Link-detached</option>
+                                            <option value="Terraced">Terraced</option>
+                                            <option value="End terrace">End terrace</option>
+                                        
+                                        </select>
+                                    
+                                    </span>
+
+                            <input type="text" class="quote-form-element" name="Roughly when was it built?" placeholder="Roughly when was it built?" />
+                            <input type="text" class="quote-form-element last" name="House Postcode" placeholder="House Postcode" />
+
+                            <h4>Contact details:</h4>
+                            <input type="text" class="quote-form-element quote-form-client-name" name="Full name" placeholder="Full Name..." />
+
+                            <span class="custom-dropdown last">
+                                    
+                                        <select name="Age" class="custom-dropdown-select quote-form-element">
+                                        
+                                            <option value="-">Votre âge</option>
+                                                {%for i in 18 .. 99 %}
+                                                    <option value="{{i}}" >{{i}}</option>
+                                                {% endfor %}
+                                        
+                                        </select>
+                                    
+                                    </span>
+
+                            <input type="text" name="Phone Number" placeholder="Phone Number..." class="quote-form-element" />
+                            <input type="text" name="E-mail Address" placeholder="E-mail Address..." class="quote-form-element quote-form-client-email last" />
+
+                            <button class="button button-navy-blue send-quote" type="button">Obtenir une Estimation <i class="fa fa-paper-plane-o"></i></button>
+
+                            <div class="quote-form-thanks">
+
+                                <div class="quote-form-thanks-content">
+
+                                    Your insurance quote has been sent successfully.
+                                    <span class="quote-form-thanks-close">Close this notice.</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <header>
+
+        <div class="center">
+
+            <div class="logo">
+
+                <a href="{{path('homepage')}}"><img src="{{asset('_assets/_img/logo.png')}}" alt="MA2E" /></a>
+
+            </div>
+
+            <nav>
+
+                <ul class="menu">
+
+                    <li class="{% for message in app.session.flashbag.get('home') %} active {%endfor%}"><a href="{{path('homepage')}}">Accueil</a></li>
+                    <li class="{% for message in app.session.flashbag.get('maee') %} active {%endfor%}"><a href="#">MA2E</a>
+                        <i class="fa fa-caret-down"></i>
+
+                        <ul class="submenu animated speed fadeInDown">
+
+                            <li><a href="{{path('ma2e')}}#vision-fondateur">La vision du fondateur</a></li>
+                            <li><a href="{{path('ma2e')}}#notre-histoire">Notre Histoire</a></li>
+                            <li><a href="{{path('ma2e')}}#notre-mission">Notre Mission</a></li>
+                            <li><a href="{{path('ma2e')}}#nos-resultats">Nos Résultats</a></li>
+                            <li><a href="{{path('notre-organisation')}}">
+                                    <i class="fa fa-caret-left"></i>Notre Organisation</a>
+                                <ul class="submenu animated speed fadeInRight">
+                                        <li><a href="{{path('notre-organisation')}}#personnel">Personnel de la MA2E</a></li>
+                                        <li><a href="{{path('notre-organisation')}}#membre">Membres des organes</a></li>    
+                                    </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!--li class="{% for message in app.session.flashbag.get('simulateur') %}active {%endfor%}">
+                        <a href="#">Simulateur de crédit</a>
+                        <i class="fa fa-caret-down"></i>
+
+                        <ul class="submenu animated speed fadeInDown">
+
+                            <li><a href="{{path('simulateur-immo')}}">Crédit Immobilier</a></li>
+                            <li><a href="{{path('simulateur-ordinaire')}}">Crédit Ordinaire & Express</a></li>
+
+                        </ul>
+                    </li-->
+                    <li class="{% for message in app.session.flashbag.get('product') %} active {%endfor%}">
+
+                        <a href="#">Produits</a>
+                        <i class="fa fa-caret-down"></i>
+
+                        <ul class="submenu animated speed fadeInDown">
+
+                            <li>
+                                <a href="{{path('all-products')}}">
+                                    <i class="fa fa-caret-left"></i> Produits d'Epargne
+                                </a>
+                                <ul class="submenu animated speed fadeInRight">
+
+                                    <li><a href="{{path('epargne-expresse')}}">Epargne Expresse</a></li>
+                                    <li><a href="{{path('epargne-ordinaire')}}">Epargne Ordinaire</a></li>
+                                    <li><a href="{{path('epargne-logement')}}">Epargne Logement</a></li>
+                                    <li><a href="{{path('depot-simple')}}">Dépôt à terme simple</a></li>
+                                    <li><a href="{{path('depot-progressif')}}">Dépôt à terme à versements progressifs</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a href="{{path('epargne-complementaire')}}">Dépôt de garantie</a></li>
+                            <li>
+                                <a href="{{path('all-credits')}}">
+                                    <i class="fa fa-caret-left"></i> Formules de Crédit
+                                </a>
+                                <ul class="submenu animated speed fadeInRight">
+
+                                    <li><a href="{{path('credit-ordinaire')}}">Crédit Ordinaire</a></li>
+                                    <li><a href="{{path('credit-express')}}">Crédit Expresse</a></li>
+                                    <li><a href="{{path('credit-immobilier')}}">Crédit Immobilier</a></li>
+                                    <li><a href="{{path('credit-immobilier-differe')}}">Crédit Immobilier différé</a></li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-caret-left"></i> Projet Immobilier
+                                </a>
+                                <ul class="submenu animated speed fadeInRight">
+
+                                    <!-- <li><a href="{{path('immobilier-dossier')}}">Mot du PCA</a></li> -->
+                                    <!--li><a href="{{path('immobilier-dossier')}}#condition-attribution">Conditions d'attribution des maisons</a></li-->
+                                    <li><a href="{{path('premiere-tranche')}}">1ère Tranche</a></li>
+                                    <li><a href="{{path('projet-immobilier')}}">Prochaines Tranches</a></li>
+
+                                    <!--li><a href="{{path('immobilier-dossier')}}#dossier-attribution">Dossiers d'attribution</a></li>
+                                    <li><a href="{{path('duplex-5')}}">Duplex 5pièces</a></li>
+                                    <li><a href="{{path('duplex-4')}}">Duplex 4pièces</a></li>
+                                    <li><a href="{{path('villa-5')}}">Villa 5pièces</a></li>
+                                    <li><a href="{{path('villa-4')}}">Villa 4pièces</a></li>
+                                    <li><a href="{{path('villa-3')}}">Villa 3pièces</a></li-->
+
+                                </ul>
+                            </li>
+                            <li><a href="{{path('document_a_telecharger')}}">Documents à télécharger</a></li>
+
+                        </ul>
+
+                    </li>
+                    
+                    <li class="{% for message in app.session.flashbag.get('infos') %} active {%endfor%}"><a href="">Actualités</a>
+                        <i class="fa fa-caret-down"></i>
+                        <ul class="submenu animated speed fadeInRight">
+
+                            <!--li><a href="{{path('depeche')}}">Dépêches</a></li-->
+                            <li><a href="{{path('event')}}">Evénements</a></li>
+                            <li><a href="{{path('info-document')}}">Documents</a></li>
+
+                        </ul>
+                    </li>
+
+                    <!--li>
+                        <a href="#">Education financière</a>
+                    </li-->
+                    <li><button class="menu-element" data-action="show-contact-popup">Contact</button></li>
+                    <!-- <li><a href="{{path('adherent-solde')}}" class="menu-element" style="color: #f28931;background: #fcfdfd;padding: 10px;">Espace adhérent <span class="fa fa-lock securise"></span> </a></li>
+                    <li><a href="{{path('fos_user_security_logout')}}" class="menu-element" style="background: #f28931;color: #fcfdfd;padding: 10px;"><span class="fa fa-sign-out"></span> </a></li> -->
+
+                </ul>
+
+                <div class="menu-responsive"><i class="fa fa-bars"></i></div>
+
+            </nav>
+
+            <div class="clear">
+            </div>
+
+        </div>
+
+    </header>
+    {% block body %}{% endblock %}
+
+    <section class="contact section-gray call-to-action">
+
+        <div class="center">
+
+            <i class="fa fa-envelope-o background-icon"></i>
+            <div class="contact-details">
+
+                <div class="contact-detail-single">
+
+                    <h3><i class="fa fa-map-marker"></i>A propos</h3>
+                    <p><strong>MA2E</strong><br /> Institution mutualiste d'Epargne et de Crédit sans but lucratif. Régie par l'ordonnance N°2011-367 du 3 Novembre 2011 portant réglémentation des systèmes financiers décentralisés.</p>
+                    <p class="without-margin-bottom">ABIDJAN / Plateau<br /> Immeuble SIDAM</p>
+
+                </div>
+
+                <div class="contact-detail-single">
+
+                    <h3><i class="fa fa-envelope-o"></i> Contacts</h3>
+                    <p>Adresse E-mail: <br /><a href="#">info@ma2e.ci</a><br></p>
+                    <p>Adresse Postale: <br /><a href="#">18 BP 1210 Abidjan 18</a><br></p>
+                    <p class="without-margin-bottom"><button class="button button-navy-blue" data-action="show-contact-popup">Contactez Nous! <i class="fa fa-paper-plane-o"></i></button></p>
+
+                </div>
+
+                <div class="contact-detail-single contact-detail-single-last">
+
+                    <div class="right">
+
+                        <div class="circles">
+
+                            <div class="circle-1 circle-pulse">
+                            </div>
+
+                            <div class="circle-2 circle-pulse">
+                            </div>
+
+                            <div class="circle-3 circle-pulse">
+                            </div>
+
+                            <div class="circle-4 circle-pulse">
+                            </div>
+
+                            <!--a href="tel:+123456789000"-->
+                            <a href="#">
+
+                                <div class="circle-center">
+
+                                    <div class="circle-center-tip">Appelez nous: <strong>(+225) 21 23 64 87</strong></div>
+                                    <i class="fa fa-phone"></i>
+
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+                    <p class="without-margin-bottom">Disponibilité Lun - Ven | 7:30 - 16:30</p>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+
+        <div class="center">
+
+            <div class="green-line">
+            </div>
+
+            <nav>
+
+                <ul class="left">
+
+                    <li>
+
+                        <h4>Crédits</h4>
+                        <ul class="sub">
+
+                            <li><a href="{{path('credit-express')}}">Crédit Expresse</a></li>
+                            <li><a href="{{path('credit-ordinaire')}}">Crédit ordinaire</a></li>
+                            <li><a href="{{path('credit-immobilier')}}">Crédit Immobiler</a></li>
+                            <li><a href="{{path('credit-immobilier-differe')}}">Crédit Immobiler différé</a></li>
+
+                        </ul>
+
+                    </li>
+
+                    <li>
+
+                        <h4>Epargnes</h4>
+                        <ul class="sub">
+
+                            <li><a href="{{path('epargne-expresse')}}">Epargne expresse</a></li>
+                            <li><a href="{{path('epargne-ordinaire')}}">Epargne ordinaire</a></li>
+                            <li><a href="{{path('epargne-complementaire')}}">Dépôt de garantie</a></li>
+                            <li><a href="{{path('depot-simple')}}">Dépôt à terme simple</a></li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <ul class="right">
+
+                <li>Copyright &copy; 2018 <span class="divider">&middot;</span> <a href="{{path('homepage')}}">MA2E</a></li>
+
+
+            </ul>
+
+            <div class="clear">
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!--Pop up en savoir plus-->
+    <div id="more-popup">
+
+        <div id="more-popup-background">
+        </div>
+
+        <div id="more-popup-content" class="animated speed">
+
+            <div id="more-popup-close"><i class="fa fa-times"></i></div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 top-50">
+                    <h2>Nos chiffres en fin d'année 2018</h2>
+                    <div class="table-responsive ">
+                        <table class="table table-bordered text-center">
+                            <tr>
+                                <th style="border:0px">&nbsp;</th>
+                                <th class=" text-center" colspan="5">Taleau de synthèse des prinicipales données (en milliers)</th>
+                            </tr>
+                            <tr>
+                                <td>Années</td>
+                                <td>Adhésions</td>
+                                <td>% Membres actifs</td>
+                                <td>Crédits accordés</td>
+                                <td>Épargnes collectées</td>
+                                <td>Resultat net</td>
+                            </tr>
+                            <tr>
+                                <td>2010</td>
+                                <td>4 227</td>
+                                <td>89,99%</td>
+                                <td>1 049 788</td>
+                                <td>591 150</td>
+                                <td>91 427</td>
+                            </tr>
+                            <tr>
+                                <td>2011</td>
+                                <td>4 738</td>
+                                <td>68,19%</td>
+                                <td>1 058 346</td>
+                                <td>541 795</td>
+                                <td>47 018</td>
+                            </tr>
+                            <tr>
+                                <td>2012</td>
+                                <td>5 179</td>
+                                <td>70,75%</td>
+                                <td>1 263 805</td>
+                                <td>700 229</td>
+                                <td>25 666</td>
+                            </tr>
+                            <tr>
+                                <td>2013</td>
+                                <td>5 701</td>
+                                <td>75,92%</td>
+                                <td>1 375 409</td>
+                                <td>801 031</td>
+                                <td>31 504</td>
+                            </tr>
+                            <tr>
+                                <td>2014</td>
+                                <td>6 139</td>
+                                <td>77,34%</td>
+                                <td>3 850 338</td>
+                                <td>1 426 313</td>
+                                <td>47 128</td>
+                            </tr>
+                            <tr>
+                                <td>2015</td>
+                                <td>6 213</td>
+                                <td>88,01%</td>
+                                <td>3 631 512</td>
+                                <td>2 665 212</td>
+                                <td>90 212</td>
+                            </tr>
+                            <tr>
+                                <td>2016</td>
+                                <td>6 641</td>
+                                <td>90,06%</td>
+                                <td>3 868 827</td>
+                                <td>2 127 373</td>
+                                <td>129 458</td>
+                            </tr>
+                            <tr>
+                                <td>2017</td>
+                                <td>6 954</td>
+                                <td>91,90%</td>
+                                <td>3 575 815</td>
+                                <td>2 782 901</td>
+                                <td>169 609</td>
+                            </tr>
+                            <tr>
+                                <td>2018</td>
+                                <td>7 173</td>
+                                <td>93,04%</td>
+                                <td>5 905 592</td>
+                                <td>4 212 902</td>
+                                <td>156 847</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--/Pop up-->
+    <div id="fb-root"></div>
+
+    {% block javascripts %}
+    <style>
+        li a i.securise {
+            font-size: 18px;
+            margin-left: 5px;
+            color: #f28931;
+        }
+    </style>
+    <script src="{{ asset('_assets/_libs/jquery.js') }}"></script>
+    <!--script src="http://maps.google.com/maps/api/js?sensor=false"></script-->
+    <script src="{{ asset('_assets/_libs/no-ui-slider/jquery.nouislider.all.min.js') }}"></script>
+    <script src="{{ asset('_assets/_libs/smoothscroll.js') }}"></script>
+    <script src="{{ asset('_assets/_libs/parallax.js') }}"></script>
+    <script src="{{ asset('_assets/_js/functions.js') }}"></script>
+    <script src="{{ asset('_assets/_js/customize.js') }}"></script>
+    {% endblock %}
+</body>
+
+</html>

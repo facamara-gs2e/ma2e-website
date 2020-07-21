@@ -1,0 +1,267 @@
+{% extends 'base.html.twig' %}{%block title%}Simulateur{%endblock%} {% block body %}
+
+<!--Section Simulateur de crédit-->
+<section class="agents tabs section-top-space section-gray" id="event">
+    <div class="center">
+        <!-- Tabs -->
+        <h3>Simulateur de crédit</h3>
+        <h2>Crédit ordinaire & crédit express</h2>
+
+        <div id="PricingTab">
+            <div class="container">
+                <div class="row">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th class="tabco1 ">Plage de montant du crédit sollicité (F CFA)</th>
+                                <th class="tabco2">Crédit ordinaire</th>
+                                <th class="tabco4">Crédit express</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tabco1">100 000 - 4 999 999</td>
+                                <td class="tabco2" title="Cliquez pour consulter" data-toggle="modal" data-target="#ordinaire100"><i class="fa fa-check rightSign" aria-hidden="true"></i></td>
+                                <td class="tabco4" title="Cliquez pour consulter"><i class="fa fa-times crossSign" aria-hidden="true"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="tabco1">100 000 - 2 000 000</td>
+                                <td class="tabco2" title="Cliquez pour consulter"><i class="fa fa-times crossSign" aria-hidden="true"></i></td>
+                                <td class="tabco4" title="Cliquez pour consulter"><i class="fa fa-times crossSign" aria-hidden="true"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="tabco1">5 000 000 - 6 999 999</td>
+                                <td class="tabco2" title="Cliquez pour consulter" data-toggle="modal" data-target="#ordinaire5"><i class="fa fa-check rightSign" aria-hidden="true"></i></td>
+                                <td class="tabco4" title="Cliquez pour consulter"><i class="fa fa-times crossSign" aria-hidden="true"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="tabco1">7 000 000 - 10 000 000</td>
+                                <td class="tabco2" title="Cliquez pour consulter" data-toggle="modal" data-target="#ordinaire7"><i class="fa fa-check rightSign" aria-hidden="true"></i></td>
+                                <td class="tabco4" title="Cliquez pour consulter"><i class="fa fa-times crossSign" aria-hidden="true"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--row-->
+            </div>
+            <!--container-->
+        </div>
+        <!--PricingTab-->
+
+
+        <div class="clear">
+        </div>
+        <!-- / End Tabs-->
+
+    </div>
+
+</section>
+<!--Section Simulateur de Crédit-->
+
+<!-- Modal -->
+<div>
+
+    <!-- 100 000 - 4 999 999 FCFA -->
+    <div class="modal fade" id="ordinaire100" role="dialog" style="top:100px">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Crédit ordinaire d'un montant compris entre 100 000 - 4 999 999 F CFA</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <p class="left-100"> <i class="fa fa-exclamation-triangle"></i> <i> Les informations de crédit représentées ici sont donnés à titre d'exemple.<br>
+                            Pour toute simulation réelle de crédit, veuillez-vous adresser à votre gestionnaire de crédit à la MA2E.<br></i></p>
+                        <p class="left-100"><i class="fa fa-info-circle"></i> Les chiffres surlignés en jaune sont les données renseignées.</p>
+                    </div>
+                    <div class="row bottom-50">
+                        <div class="col-md-12">
+                            <img class="img-responsive" src="{{asset('_assets/_img/simulateur/ordinaire-100.png')}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5 000 000 - 6 999 999 FCFA -->
+    <div class="modal fade" id="ordinaire5" role="dialog" style="top:100px">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Crédit ordinaire d'un montant compris entre 5 000 000 - 6 999 999 F CFA</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <p class="left-100"> <i class="fa fa-exclamation-triangle"></i> <i> Les informations de crédit représentées ici sont donnés à titre d'exemple.<br>
+                        Pour toute simulation réelle de crédit, veuillez-vous adresser à votre gestionnaire de crédit à la MA2E.<br></i></p>
+                        <p class="left-100"><i class="fa fa-info-circle"></i> Les chiffres surlignés en jaune sont les données renseignées.</p>
+                    </div>
+                    <div class="row bottom-50">
+                        <div class="col-md-12">
+                            <img class="img-responsive" src="{{asset('_assets/_img/simulateur/ordinaire-5.png')}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7 000 000 - 10 000 000 FCFA -->
+    <div class="modal fade" id="ordinaire7" role="dialog" style="top:100px">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Crédit ordinaire d'un montant compris entre 7 000 000 - 10 000 000 F CFA</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                    </div>
+                    <div class="row bottom-50">
+                        <div class="col-md-12">
+                            <label for="">Aucun contenu disponible.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% block stylesheets %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+    #PricingTab {
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+    
+    #PricingTab h2 {
+        font-weight: 700;
+        font-size: 35px;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    
+    .tabco1 {
+        background: #fff;
+        width: 40%;
+        padding: 10px !important;
+    }
+    
+    th.tabco1 {
+        background: #fff;
+        padding: 32px 10px !important;
+        font-size: 18px;
+        /*text-transform: uppercase;*/
+        color: #000;
+    }
+    
+    .tabco2 {
+        background: #4ba146;
+        text-align: center;
+        color: #fff;
+    }
+    
+    th.tabco2 {
+        background: #4ba146;
+        padding: 20px 5px !important;
+        font-size: 18px;
+        /*text-transform: uppercase;*/
+    }
+    
+    .tabco3 {
+        background: #ffffff;
+        text-align: center;
+        color: #fff;
+    }
+    
+    th.tabco3 {
+        background: #c1cec0;
+        padding: 20px 10px !important;
+        font-size: 18px;
+        /*text-transform: uppercase;*/
+    }
+    
+    .tabco4 {
+        background: #f38d31;
+        text-align: center;
+        color: #fff;
+    }
+    
+    th.tabco4 {
+        background: #f38d31;
+        padding: 20px 10px !important;
+        font-size: 18px;
+        /*text-transform: uppercase;*/
+    }
+    
+    .tabco5 {
+        background: #ffffff;
+        text-align: center;
+        color: #fff;
+    }
+    
+    th.tabco5 {
+        background: #d2c2b3;
+        padding: 20px 10px !important;
+        font-size: 18px;
+        /*text-transform: uppercase;*/
+        color: #fff;
+    }
+    
+    .rightSign {
+        color: #1ab921;
+        background: #fff;
+        border-radius: 45px;
+        padding: 5px;
+        border: 2px solid;
+        box-shadow: 0px 0px 11px -5px #000;
+    }
+    
+    .crossSign {
+        color: #de2315;
+        background: #fff;
+        border-radius: 45px;
+        padding: 5px 7px;
+        border: 2px solid;
+        box-shadow: 0px 0px 11px -5px #000;
+    }
+    
+    .White-Yellow {
+        border-top: 0;
+        border-left: 75px solid #fff;
+        border-right: 75px solid #FEF200;
+        height: 5px;
+        width: 0px;
+    }
+    
+    h5.card-title {
+        text-decoration: none;
+        color: #969aae;
+    }
+    
+    .none:hover {
+        text-decoration: none;
+    }
+    
+    td.tabco2,
+    td.tabco3,
+    td.tabco4,
+    td.tabco5 {
+        cursor: pointer;
+    }
+    
+    .left-100 {
+        margin-left: 100px;
+    }
+</style>
+{% endblock %}

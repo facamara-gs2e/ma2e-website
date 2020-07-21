@@ -1,0 +1,154 @@
+{% extends 'layouts/layout-adherent.html.twig' %}{%block title%}Espace adhérent{%endblock%} {% block body %}
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#">Espace adhérent</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Service</span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Demande de virement</span>
+        </li>
+    </ul>
+    <div class="page-breadcrumb pull-right">
+        <div class="badge badge-orange">
+            Espace sécurisé <i class="fa fa-lock"></i>
+        </div>
+    </div>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h1 class="page-title">Demande de virement de compte à compte </h1>
+<!-- END PAGE TITLE-->
+<!-- END PAGE HEADER-->
+
+<div class="row">
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-green-sharp">
+                <i class="fa fa-pencil-square-o font-green-sharp"></i>
+                <span class="caption-subject bold uppercase"> Formulaire de demande de virement</span>
+            </div>
+        </div>
+        <div class="portlet-body">
+
+            <div class="row">
+
+                {% for message in app.session.flashbag.get('success') %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="alert alert-block alert-success fade in">
+                            <button type="button" class="close" data-dismiss="alert"></button>
+                            <p>
+                                <stronng>{{message}}</stronng>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %} {% for message in app.session.flashbag.get('error') %}
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="alert alert-block alert-danger fade in">
+                            <button type="button" class="close" data-dismiss="alert"></button>
+                            <p>
+                                <stronng>{{message}}</stronng>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="tab-content">
+                    <form class="form-horizontal  formSubmit" action="{{path('actionVirement')}}" method="post" id="form">
+                        <div class=" form-group">
+                            <label class="control-label col-md-4">Compte à débiter</label>
+                            <div class="col-md-5">
+                                <select name="compte_a_debiter" id="compte_a_debiter" class="form-control">
+                                        <option value=""></option>
+                                    <option value="EPARGNE ORDINAIRE" >Epargne ordinaire</option>
+                                    <option value="EPARGNE ORDINAIRE A VUE" >Epargne ordinaire à vue</option>
+                                    <option value="EPARGNE EXPRESSE" >Epargne Expresse</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label class="control-label col-md-4">Montant à débiter</label>
+                            <div class="col-md-5">
+                                <div class="input-group">
+                                    <input type="text" class="form-control separate" placeholder="Montant à débiter" name="montant_a_debiter">
+                                    <span class="input-group-addon">
+                                                        F CFA
+                                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label class="control-label col-md-4">Compte à créditer</label>
+                            <div class="col-md-5">
+                                <select name="compte_a_crediter" id="compte_a_crediter" class="form-control" required>
+                                    <option value=""></option>
+                                    <option value="EPARGNE ORDINAIRE" >Epargne ordinaire</option>
+                                    <option value="EPARGNE ORDINAIRE A VUE" >Epargne ordinaire à vue</option>
+                                    <option value="EPARGNE EXPRESSE" >Epargne Expresse</option>
+                                    <option value="DEPOT A TERME">Dépôt à terme</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label class="control-label col-md-4">Date d'effet souhaitée</label>
+                            <div class="col-md-5">
+                                <input class="form-control form-control-inline date-picker" type="text" data-date-format="dd/mm/yyyy" data-date-start-date="+0d" required placeholder="Date d'effet souhaitée" name="date_effet_souhaitee">
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label class="control-label col-md-4">Motif</label>
+                            <div class="col-md-5">
+                                <textarea name="motif" id="" rows="3" class="form-control" placeholder="Motif du virement"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Date de l'opération</label>
+                            <div class="col-md-5">
+                                <input disabled type="text" class="form-control" placeholder="Date de souscription" value='{{ "now"|date("d/m/Y") }}'>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <div class="row">
+                                <div class="col-md-offset-4 col-md-8">
+                                    <button class="btn green btnSubmit" type="button">
+                                        <i class="fa fa-check"></i> Valider</button>
+                                    <button type="reset" class="btn btn-default">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{%block stylesheets%}
+<script>
+    $(document).ready(function(e) {
+        $('#compte_a_crediter').add('#compte_a_debiter').change(function (e){
+            var compte_a_crediter = $('#compte_a_crediter').val();
+            var compte_a_debiter = $('#compte_a_debiter').val();
+            if(compte_a_crediter === compte_a_debiter){
+                $('#compte_a_crediter').val('');
+                bootbox.alert("Le compte à créditer ne peut pas être débité.");
+                return false;
+            }
+        });
+        
+    })
+</script>
+{%endblock%}

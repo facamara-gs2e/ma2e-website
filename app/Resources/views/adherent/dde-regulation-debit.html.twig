@@ -1,0 +1,113 @@
+{% extends 'layouts/layout-adherent.html.twig' %}{%block title%}Espace adhérent{%endblock%} {% block body %}
+
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="#">Espace adhérent</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Service</span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Demande de régularisation de débit à tort</span>
+        </li>
+    </ul>
+    <div class="page-breadcrumb pull-right">
+        <div class="badge badge-orange">
+            Espace sécurisé <i class="fa fa-lock"></i>
+        </div>
+    </div>
+</div>
+<!-- END PAGE BAR -->
+<!-- BEGIN PAGE TITLE-->
+<h1 class="page-title">Demande de régularisation de débit à tort sur la carte VISA Prépayée UBA </h1>
+<!-- END PAGE TITLE-->
+<!-- END PAGE HEADER-->
+
+<div class="row">
+
+    {% for message in app.session.flashbag.get('success') %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="alert alert-block alert-success fade in">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <p>
+                    <stronng>{{message}}</stronng>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %} {% for message in app.session.flashbag.get('error') %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="alert alert-block alert-danger fade in">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <p>
+                    <stronng>{{message}}</stronng>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="portlet light bordered">
+        <div class="portlet-title">
+            <div class="caption font-green-sharp">
+                <i class="fa fa-pencil-square-o font-green-sharp"></i>
+                <span class="caption-subject bold uppercase"> Formulaire de demande de régularisation de débit à tort</span>
+            </div>
+        </div>
+        <div class="portlet-body">
+
+            <form class="form-horizontal formSubmit" role="form" action="{{path('actionRegularisation')}}" method="post" id="form">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Date de l'opération au guichet automatique</label>
+                        <div class="col-md-5">
+                            <input class="form-control form-control-inline date-picker" required type="text" data-date-format="dd/mm/yyyy" placeholder="Entrez la date" name="date_operation">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Lieu de l'opération</label>
+                        <div class="col-md-5">
+                            <input class="form-control" type="text" placeholder="Lieu de l'opération" name="lieu_operation" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Montant débité</label>
+                        <div class="col-md-5">
+                            <input class="form-control separate" type="text" placeholder="Montant débité" name="montant_debite" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">N° de la carte UBA</label>
+                        <div class="col-md-5">
+                                <input class="form-control" type="text" placeholder="N° de carte UBA" name="numero_carte">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Date de la demande</label>
+                        <div class="col-md-5">
+                            <input disabled type="text" class="form-control" required placeholder="Date de souscription" value='{{ "now"|date("d/m/Y") }}'>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button class="btn green btnSubmit" type="button">
+                                <i class="fa fa-check"></i> Valider</button>
+                            <button type="reset" class="btn btn-default">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

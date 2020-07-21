@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}{%block title%}Projet Immobilier{%endblock%} {% block body %}
+
+<section class="blog section-top-space">
+
+    <i class="fa fa-newspaper-o background-icon"></i>
+
+    <div class="center">
+        <div class="lightBoxGallery">
+
+            <ul class="recent-news">
+
+                <li class="recent-news-single">
+                    <a href="{{asset('_assets/_img/projet-immo/3pieces-3d.jpg')}}" data-gallery=""><img src="{{asset('_assets/_img/projet-immo/3pieces-3d.jpg')}}" class="img-gallery"></a>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{{asset('_assets/_img/projet-immo/plan-3pieces.jpg')}}" data-gallery=""><img src="{{asset('_assets/_img/projet-immo/plan-3pieces.jpg')}}" class="img-gallery"></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+            </div>
+        </div>
+
+
+        <div class="sidebar">
+
+            <div class="widget">
+
+                <h3>Villa 3 pièces</h3>
+                <div style=" margin-bottom: 20px;">
+                        <small style="color:#002510;"> <i class="fa fa-info-circle"></i> Les informations initiales de l'année 2015 sont succeptibles de varier.</small>
+                </div>
+
+                <div class="folded">
+                    <h2 class="back-orange">9 500 000 FCFA</h2>
+                </div>
+                <div class="folded-lot">
+                    <h2 class="back-white">Lot : 100 m<sup>2</sup></h2>
+                </div>
+                <div class="row top-50">
+                    <table class="table ">
+                        <tr>
+                            <td>Apport Personnel</td>
+                            <td>1 922 420 FCFA</td>
+                        </tr>
+                        <tr>
+                            <td>Loyer mensuel</td>
+                            <td>66 035 FCFA</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center" colspan="2">
+                                CARACTERISTIQUES
+                            </th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Chambre Parents</td>
+                        <td>11,20 m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Chambre Enfant</td>
+                        <td>09,75 m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Séjour</td>
+                        <td>20 m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Cuisine</td>
+                        <td>7,40 m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Salle d'eau</td>
+                        <td>4,2 m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Terrasse</td>
+                        <td>5,39 m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Dégagement</td>
+                        <td>4,1 m<sup>2</sup></td>
+                    </tr>
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td>67,43 m<sup>2</sup></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="clear">
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %} {% block stylesheets %}
+
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{{asset('_assets/_css/galerie.min.css')}}">
+<script src="{{asset('_assets/_js/galerie.min.js')}}"></script>
+
+<style>
+    .lightBoxGallery img {
+        margin: 5px;
+    }
+    
+    .lightBoxGallery {
+        text-align: center;
+    }
+    
+    .img-gallery {
+        width: 150px;
+        height: 150px;
+    }
+</style>
+{% endblock %}
