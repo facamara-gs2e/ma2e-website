@@ -1,4 +1,1 @@
-symfony
-=======
-
-A Symfony project created on August 16, 2017, 12:17 pm.
+# ma2e-website
